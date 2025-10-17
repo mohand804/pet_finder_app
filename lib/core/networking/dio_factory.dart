@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:pet_finder_app/core/helpers/shared_pref_helpr.dart';
+import 'package:pet_finder_app/core/networking/api_constants.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class DioFactory {
@@ -31,12 +31,7 @@ class DioFactory {
     dio?.interceptors.add(
       InterceptorsWrapper(
         onRequest: (options, handler) async {
-          final token = await SharedPrefHelper.getString('token');
-          if (token != null && token.isNotEmpty) {
-            options.headers['Authorization'] = 'Bearer $token';
-          } else {
-            options.headers.remove('Authorization');
-          }
+          options.headers['x-api-key'] = ApiConstants.demoApiKey;
           handler.next(options);
         },
       ),

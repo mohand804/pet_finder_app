@@ -22,7 +22,7 @@ class PetFinderApp extends StatelessWidget {
           fontFamily: 'Poppins',
         ),
         onGenerateRoute: appRouter.generateRoute,
-        initialRoute: Routes.onBoardingScreen,
+        initialRoute: Routes.homeScreen,
         debugShowCheckedModeBanner: false,
       ),
     );
