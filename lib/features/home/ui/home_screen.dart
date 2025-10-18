@@ -5,7 +5,6 @@ import 'package:pet_finder_app/core/helpers/spacing.dart';
 import 'package:pet_finder_app/core/theming/font_weight_helper.dart';
 import 'package:pet_finder_app/features/home/logic/cubit/cat_breed_cubit.dart';
 import 'package:pet_finder_app/features/home/logic/cubit/cat_breed_state.dart';
-import 'package:pet_finder_app/features/home/ui/widgets/bottom_nav_bar.dart';
 import 'package:pet_finder_app/features/home/ui/widgets/breed_list_veiw_item.dart';
 import 'package:pet_finder_app/features/home/ui/widgets/category_list_view.dart';
 import 'package:pet_finder_app/features/home/ui/widgets/home_header.dart';
@@ -88,7 +87,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
               ),
-              const BottomNavBar(),
             ],
           ),
         ),
