@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pet_finder_app/core/helpers/spacing.dart';
+import 'package:pet_finder_app/core/networking/api_constants.dart';
 import 'package:pet_finder_app/core/theming/colors.dart';
 import 'package:pet_finder_app/core/theming/font_weight_helper.dart';
+import 'package:pet_finder_app/features/favorite/data/model/favorite_requset_model.dart';
+import 'package:pet_finder_app/features/favorite/logic/cubit/favorite_cubit.dart';
 import 'package:pet_finder_app/features/home/data/model/cat_breed.dart';
 
 class BreedListViewItem extends StatefulWidget {
@@ -112,6 +116,12 @@ class _BreedListViewItemState extends State<BreedListViewItem> {
           ),
           GestureDetector(
             onTap: () {
+              context.read<FavoriteCubit>().addFavourite(
+                FavoriteRequestModel(
+                  imageId: widget.breed.image!.id!,
+                  subId: ApiConstants.demoApiKey,
+                ),
+              );
               setState(() {
                 isFavorite = !isFavorite;
               });

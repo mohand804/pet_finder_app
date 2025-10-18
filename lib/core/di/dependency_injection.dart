@@ -3,6 +3,8 @@ import 'package:get_it/get_it.dart';
 import 'package:pet_finder_app/core/networking/api_constants.dart';
 import 'package:pet_finder_app/core/networking/api_service.dart';
 import 'package:pet_finder_app/core/networking/dio_factory.dart';
+import 'package:pet_finder_app/features/favorite/data/repo/favorite_repo.dart';
+import 'package:pet_finder_app/features/favorite/logic/cubit/favorite_cubit.dart';
 import 'package:pet_finder_app/features/home/data/repo/cat_breed_repo.dart';
 import 'package:pet_finder_app/features/home/logic/cubit/cat_breed_cubit.dart';
 
@@ -19,5 +21,11 @@ Future<void> setupGetIt() async {
   );
   getIt.registerFactory<CatBreedCubit>(
     () => CatBreedCubit(getIt<CatBreedRepo>()),
+  );
+  getIt.registerFactory<FavoriteCubit>(
+    () => FavoriteCubit(getIt<FavoriteRepo>()),
+  );
+  getIt.registerLazySingleton<FavoriteRepo>(
+    () => FavoriteRepo(getIt<ApiService>()),
   );
 }

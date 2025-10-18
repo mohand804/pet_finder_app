@@ -1,5 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:pet_finder_app/core/networking/api_constants.dart';
+import 'package:pet_finder_app/features/favorite/data/model/add_to_favorite_response_model.dart';
+import 'package:pet_finder_app/features/favorite/data/model/favorite_requset_model.dart';
+import 'package:pet_finder_app/features/favorite/data/model/favorite_response_model.dart';
 import 'package:pet_finder_app/features/home/data/model/cat_breed.dart';
 import 'package:retrofit/error_logger.dart';
 import 'package:retrofit/http.dart';
@@ -21,4 +24,14 @@ abstract class ApiService {
     @Query('q') String query,
     @Query('attach_image') int attachImage,
   );
+  @GET(ApiConstants.favourites)
+  Future<List<FavoriteResponseModel>> getFavourites();
+  @GET(ApiConstants.favouriteById)
+  Future<FavoriteResponseModel> getFavouriteById(@Path('id') int id);
+  @POST(ApiConstants.favourites)
+  Future<AddToFavoriteResponseModel> addFavourite(
+    @Body() FavoriteRequestModel favoriteRequestModel,
+  );
+  @DELETE(ApiConstants.favouriteById)
+  Future<void> deleteFavourite(@Path('id') int id);
 }
